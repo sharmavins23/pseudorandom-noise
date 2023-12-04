@@ -39,15 +39,18 @@ public class HashVisualization : MonoBehaviour {
     };
     [SerializeField, Range(-0.5f, 0.5f)] float displacement = 0.1f;
     [SerializeField] int seed = 23;
-    public enum Shape { Plane, Sphere, Torus, SpiralStar }
+    public enum Shape { Plane, Sphere, OctaSphere, Octahedron, Torus, SpiralStar }
     static Shapes.ScheduleDelegate[] shapeJobs = {
         Shapes.Job<Shapes.Plane>.ScheduleParallel,
         Shapes.Job<Shapes.Sphere>.ScheduleParallel,
+        Shapes.Job<Shapes.OctaSphere>.ScheduleParallel,
+        Shapes.Job<Shapes.Octahedron>.ScheduleParallel,
         Shapes.Job<Shapes.Torus>.ScheduleParallel,
         Shapes.Job<Shapes.SpiralStar>.ScheduleParallel
     };
     [SerializeField] Shape shape;
     [SerializeField] bool pulsing;
+    [SerializeField, Range(0.1f, 10f)] float instanceScale = 2f;
 
     NativeArray<uint4> hashes;
     NativeArray<float3x4> positions, normals;
@@ -79,7 +82,7 @@ public class HashVisualization : MonoBehaviour {
         propertyBlock.SetBuffer(normalsID, normalsBuffer);
         propertyBlock.SetVector(configID, new Vector4(
             resolution,
-            1f / resolution,
+            instanceScale / resolution,
             displacement
         ));
     }
@@ -135,7 +138,7 @@ public class HashVisualization : MonoBehaviour {
             displacement = 0.5f * sin(Time.time);
             propertyBlock.SetVector(configID, new Vector4(
                 resolution,
-                1f / resolution,
+                instanceScale / resolution,
                 displacement
             ));
         }
