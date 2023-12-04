@@ -7,6 +7,14 @@ tutorial on
 
 ## Part 1 - [Hashing](https://catlikecoding.com/unity/tutorials/pseudorandom-noise/hashing/)
 
+This part entails creating a hashing function to create pseudorandom noise.
+We'll visualize it on a grid of procedurally generated cubes. I'll draw these
+with an image of 123 by 123 pixels.
+
+| Grid                         | Notes                                                                                  |
+| ---------------------------- | -------------------------------------------------------------------------------------- |
+| ![img](img/hashing/base.png) | Our base grid. Our shader has some lighting effects that make things look less random. |
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
