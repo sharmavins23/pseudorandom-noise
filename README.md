@@ -26,6 +26,8 @@ with an image of 123 by 123 pixels.
 | ![img](img/hashing/xxhash32CDE.png)       | Here is the hashed output after involving primes C, D, and E (3/5 primes).                              |
 | ![img](img/hashing/xxhash32avalanche.png) | 'Avalanching' is the final step - XORing and shifting a lot of random bits repetitively.                |
 | ![img](img/hashing/scaleInvariance.gif)   | This hashing function demonstrates scale invariance as well.                                            |
+| ![img](img/hashing/hashColors.png)        | Our previous visualization only showed 1/4 of the random bytes. Now, we can see 3/4ths with colors.     |
+| ![img](img/hashing/variedOffset.png)      | Finally, varying the offset lets us show the final random byte. Nice!                                   |
 
 # License TL;DR
 
