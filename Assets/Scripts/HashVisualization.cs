@@ -1,7 +1,6 @@
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using Unity.Mathematics;
 using UnityEngine;
 using static Unity.Mathematics.math;
 
@@ -10,8 +9,15 @@ public class HashVisualization : MonoBehaviour {
     struct HashJob : IJobFor {
         [WriteOnly] public NativeArray<uint> hashes;
 
+        public int resolution;
+        public float invResolution;
+
         public void Execute(int i) {
-            hashes[i] = (uint)i;
+            int v = (int)floor(invResolution * i + 0.00001f);
+            int u = i - resolution * v;
+
+            SmallXXHash hash = SmallXXHash.Seed(23).Eat(u).Eat(v);
+            hashes[i] = hash;
         }
     }
 
@@ -33,7 +39,9 @@ public class HashVisualization : MonoBehaviour {
 
         // Compute all the hashes for grid items as a job
         new HashJob {
-            hashes = hashes
+            hashes = hashes,
+            resolution = resolution,
+            invResolution = 1f / resolution
         }.ScheduleParallel(hashes.Length, resolution, default).Complete();
         hashesBuffer.SetData(hashes);
 

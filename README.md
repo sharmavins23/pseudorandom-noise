@@ -5,15 +5,27 @@ This project is a follow-along of
 tutorial on
 [pseudorandom noise](https://catlikecoding.com/unity/tutorials/pseudorandom-noise).
 
+Notably, this project was created via URP's default project, which (seemingly)
+adds some form of global illumination and bloom. I think it looks fairly good,
+so I'll keep it.
+
 ## Part 1 - [Hashing](https://catlikecoding.com/unity/tutorials/pseudorandom-noise/hashing/)
 
 This part entails creating a hashing function to create pseudorandom noise.
 We'll visualize it on a grid of procedurally generated cubes. I'll draw these
 with an image of 123 by 123 pixels.
 
-| Grid                         | Notes                                                                                  |
-| ---------------------------- | -------------------------------------------------------------------------------------- |
-| ![img](img/hashing/base.png) | Our base grid. Our shader has some lighting effects that make things look less random. |
+| Grid                                      | Notes                                                                                                   |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| ![img](img/hashing/base.png)              | Our base grid.                                                                                          |
+| ![img](img/hashing/repeat256.png)         | Making our grid repeat every 256 values gives some interesting (non-random) effects.                    |
+| ![img](img/hashing/weyl.png)              | Adding Weyl sequencing makes a repeating pattern where the direction is based on the resolution.        |
+| ![img](img/hashing/uvWeyl.png)            | Basing the Weyl sequence on the UV coordinates of the points breaks the pattern up, but adds this grid. |
+| ![img](img/hashing/xxhash32C.png)         | XXHash32 is a fast hashing function using 5 prime numbers. This is the output with only 1/5.            |
+| ![img](img/hashing/xxhash32rotate.png)    | After 'eating' data, XXHash32 will 'rotate' bit values to further permute.                              |
+| ![img](img/hashing/xxhash32CDE.png)       | Here is the hashed output after involving primes C, D, and E (3/5 primes).                              |
+| ![img](img/hashing/xxhash32avalanche.png) | 'Avalanching' is the final step - XORing and shifting a lot of random bits repetitively.                |
+| ![img](img/hashing/scaleInvariance.gif)   | This hashing function demonstrates scale invariance as well.                                            |
 
 # License TL;DR
 
