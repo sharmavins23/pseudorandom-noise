@@ -55,6 +55,18 @@ table:
 | ![img](img/hashing-space/octasphere.png)  | This sphere has a much better distribution of points!                                                                                                                                                                                                                                                   |
 | ![img](img/hashing-space/instance.gif)    | We can end off by increasing the size of each point in order to better demonstrate the surface. Here's a quick gif of higher scaling with the pulsating effect - The distance away from the 'surface mesh' is related to the random value in the most significant byte from our hashing function. Neat! |
 
+The individual meshes are cubes. With that structure, I get around 415 FPS on my
+machine (at maximal resolution and maximal instance scaling). This corresponds
+to 512 \* 512, or 262,144 objects on the screen (though, it seems the GPU is
+actually trying to render 786k objects, so my math must be wrong!)
+
+If I swap the individual meshes to spheres, I drop down to 14 FPS. Clearly,
+those are too taxing for my machine. Lower resolutions work well with spheres,
+and give an extremely interesting visual effect (that's probably fairly
+useless!)
+
+![img](img/hashing-space/lowresSphere.gif)
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
