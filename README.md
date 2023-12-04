@@ -29,6 +29,29 @@ with an image of 123 by 123 pixels.
 | ![img](img/hashing/hashColors.png)        | Our previous visualization only showed 1/4 of the random bytes. Now, we can see 3/4ths with colors.     |
 | ![img](img/hashing/variedOffset.png)      | Finally, varying the offset lets us show the final random byte. Nice!                                   |
 
+## Part 2 - [Hashing Space](https://catlikecoding.com/unity/tutorials/pseudorandom-noise/hashing-space/)
+
+Currently our hashing only works with two-dimensional non-transformed grids. We
+can see this if we scale down our UV coordinates:
+
+![img](img/hashing-space/uvquarter.png)
+
+Applying a quarter-scale linear transformation causes the random values to
+cluster, which is not usable. As such, let's fix this to be able to apply any
+translation, rotation, and scaling. Like before, I'll summarize notes in a
+table:
+
+| Image                                     | Notes                                                                                            |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| ![img](img/hashing-space/uvRotate.png)    | Adding support for transformation matrices allows us to rotate and scale our hashing.            |
+| ![img](img/hashing-space/zSlice.png)      | We can even rotate across axes to see different slices of the hash's volume.                     |
+| ![img](img/hashing-space/linearScale.png) | Moving this 3D object allows us to explore the global hash volume.                               |
+| ![img](img/hashing-space/rotation.png)    | This 3D support requires we make our displacement based off normal vectors instead of Y vectors. |
+| ![img](img/hashing-space/sphereMap.png)   | Since we have 3D support, we can map to all kinds of 3-dimensional objects. Here's a ball...     |
+| ![img](img/hashing-space/torus.png)       | Here's a torus with high resolution. An interesting band appears on top.                         |
+| ![img](img/hashing-space/star.png)        | I couldn't resist, and had to implement the spiral star from the graphs tutorial.                |
+| ![img](img/hashing-space/pulsingthin.gif) | With a tiny amount of work, we can make the objects pulse!                                       |
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
